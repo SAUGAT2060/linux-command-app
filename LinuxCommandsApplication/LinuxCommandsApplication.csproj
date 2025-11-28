@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- 
+  Official Solution from Microsoft: using the following code <ItemGroup>
+  - It tells MSBuild to copy linux-commands.json from our project root 
+  to the output directory (bin/Debug/net8.0/) whenever you build or run the project.
+  - Now, Path.Combine(AppContext.BaseDirectory, "linux-commands.json") 
+  will work because the file actually exists there.
+
+  Tip:
+  You can install "XML" extension from "Red Hat": redhat.com
+  XML Language Support by Red Hat
+  -->
+
+  <ItemGroup>
+    <!-- 
+    Optional: 
+    <None Update="Data\linux-commands.json">
+    If we move our json file "linux-commands.json" file into a folder "Data" inside our project, 
+    we need to update two things:
+    First: adding Update="Data\linux-commands.json"
+    Second: check the main cs file: Path.Combine(AppContext.BaseDirectory, "Data", "linux-commands.json")
+    -->
+    <!-- <None Update="Data\linux-commands.json"> -->
+    <None Update="Data/linux-commands.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <!-- 
+    <None Update="Linux-commands.json"> => MSBuild will consider commands.json as a non-compilable file in
+  the project
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> => To make sure the file is copied to
+  the output directory (bin/...)every time it changes, so your app can find it at runtime
+
+    Link:
+    https://learn.microsoft.com/en-us/visualstudio/msbuild/common-msbuild-project-items?view=vs-2022
+
+    Link:
+    https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props
+
+    Link: 
+    https://learn.microsoft.com/en-us/visualstudio/msbuild/itemgroup-element-msbuild?view=vs-2022
+
+    Link:
+    https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-builds-for-generated-files?view=vs-2022
+  -->
+</Project>

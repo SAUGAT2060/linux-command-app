@@ -1,0 +1,19 @@
+[
+    {
+        "Command":"ls",
+        "Description" :"Lists the content of a directory"
+         
+    },
+    {
+        "Command":"mkdir",
+        "Description":"Creates directories"
+    },
+    {
+        "Command":"pwd",
+        "Description":"Displays the path of the present working directory"
+    },
+    {
+        "Command":"clear",
+        "Description":"Clears the terminal display"
+    }
+]
